@@ -1,16 +1,16 @@
 ## Panel Administrativo
-Aplicacion en symfony 7.4
+Aplicación en symfony 7.4
+
+
+### Comandos de consola
+Crear un nuevo proyecto, se creará en la versión 7.4 que es la última LTS a la fecha
+```
+    symfony new admin panel --version="7.4.*"
+```
 
 Levantar el proyecto
 ```
     symfony serve
-```
-
-Instalar el set de comandos make
-
-```
-    composer require symfony/make-bundle --dev
-    composer require security // Componente de seguridad
 ```
 
 Sistema de base de datos
@@ -20,11 +20,35 @@ Sistema de base de datos
 
 Sistema de plantillas
 ```
-composer require symfony/twig-pack
+    composer require symfony/twig-pack
 ```
 
 Debug bar
-composer require symfony/debug-pack
+```
+    composer require symfony/debug-pack
+```
 
 Maker Bundle
-composer require symfony/maker-bundle --dev
+```
+    composer require symfony/maker-bundle --dev
+```
+
+Crear la base de datos
+```
+    php bin/console doctrine:database:create
+```
+
+Crear una entidad
+```
+    php bin/console make:entity
+```
+
+Crear las migraciones
+```
+    php bin/console make:migration
+```
+
+Ejecutar las migraciones
+```
+    php bin/console doctrine:migrations:migrate
+```
