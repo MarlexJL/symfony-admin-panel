@@ -1,11 +1,11 @@
-## Panel Administrativo
-Aplicación en symfony 7.4
+## Blog con Panel Administrativo
+Proyecto creado con Symfony 7.4 que es la última LTS a la fecha
 
 
 ### Comandos de consola
-Crear un nuevo proyecto, se creará en la versión 7.4 que es la última LTS a la fecha
+Crear un nuevo proyecto
 ```
-    symfony new admin panel --version="7.4.*"
+    symfony new admin-panel --version="7.4.*"
 ```
 
 Levantar el proyecto
@@ -51,4 +51,9 @@ Crear las migraciones
 Ejecutar las migraciones
 ```
     php bin/console doctrine:migrations:migrate
+```
+
+Instalar panel administrativo
+```
+    composer require easycorp/easyadmin-bundle
 ```
