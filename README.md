@@ -53,7 +53,14 @@ Ejecutar las migraciones
     php bin/console doctrine:migrations:migrate
 ```
 
-Instalar panel administrativo
+Instalar Easy Admin
 ```
     composer require easycorp/easyadmin-bundle
 ```
+
+Crear el panel administrativo
+```
+    php bin/console make:admin:dashboard
+```
+
+php bin/console make:admin:crud
