@@ -95,3 +95,10 @@ Configurar autenticación
     php bin/console make:security:form-login
     php bin/console make:registration-form
 ```
+
+Eliminar la base de datos
+```
+    php bin/console doctrine:database:drop --force
+    php bin/console doctrine:database:create
+    php bin/console doctrine:migrations:migrate
+```
