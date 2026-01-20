@@ -34,8 +34,8 @@ final class CategoryFactory extends PersistentObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'name' => self::faker()->word(),
-            'slug' => self::faker()->word(),
+            'name' => $name = self::faker()->unique()->word(),
+            'slug' => strtolower(str_replace(' ', '-', $name)),
         ];
     }
 

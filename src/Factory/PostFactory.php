@@ -34,10 +34,10 @@ final class PostFactory extends PersistentObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            // 'category' => CategoryFactory::new(),
+            // 'category' => CategoryFactory::new(),          
+            'title' => $title = self::faker()->sentence(),
+            'slug' => strtolower(str_replace(' ', '-', $title)),
             'content' => self::faker()->text(),
-            'slug' => self::faker()->sentence(),
-            'title' => self::faker()->sentence(),
         ];
     }
 
