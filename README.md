@@ -63,4 +63,7 @@ Crear el panel administrativo
     php bin/console make:admin:dashboard
 ```
 
+Crear el CRUD de las entidades
+```
 php bin/console make:admin:crud
+```
