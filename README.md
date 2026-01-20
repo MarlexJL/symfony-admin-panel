@@ -88,3 +88,10 @@ Configurar usuarios
 ```
     php bin/console make:user
 ```
+
+Configurar autenticación
+```
+    php bin/console make:auth --deprecado
+    php bin/console make:security:form-login
+    php bin/console make:registration-form
+```
