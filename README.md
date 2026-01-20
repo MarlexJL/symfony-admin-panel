@@ -65,5 +65,21 @@ Crear el panel administrativo
 
 Crear el CRUD de las entidades
 ```
-php bin/console make:admin:crud
+    php bin/console make:admin:crud
+```
+
+Trabajar con datos falsos, datos semillas, seeders
+```
+    composer require orm-fixtures --dev
+```
+
+Utilizar Faker
+```
+    composer require foundry --dev
+    bin/console make:factory
+```
+
+Ejecutar los datos de prueba 
+```
+    php bin/console doctrine:fixtures:load
 ```
