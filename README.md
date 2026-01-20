@@ -83,3 +83,8 @@ Ejecutar los datos de prueba
 ```
     php bin/console doctrine:fixtures:load
 ```
+
+Configurar usuarios
+```
+    php bin/console make:user
+```
