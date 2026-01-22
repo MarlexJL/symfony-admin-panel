@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Ultimas publicaciones</h1>
+	{# <h1>Ultimas publicaciones</h1>
 	{% for post in posts %}
 		<h2>
 			<a href="{{ path('app_post', {slug: post.slug}) }}" class="text-black text-decoration-none">
@@ -15,5 +15,55 @@
 		{% include "page/_info.html.twig" %}
 	{% else %}
 		<p>No hay publicaciones.</p>
-	{% endfor %}
+	{% endfor %} #}
+	 <div class="min-h-screen bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-16 text-center">
+            Últimas <span class="text-indigo-600">publicaciones</span>
+        </h1>
+
+        <div class="space-y-12">
+            {% for post in posts %}
+                <article class="border-b border-gray-200 pb-12 last:border-b-0 hover:bg-gray-50 transition p-6 rounded-lg">
+                    <div class="flex items-start gap-6">
+                        {# <div class="flex-shrink-0 text-gray-400 text-sm font-medium w-24">
+                            {{ post.createdAt|date('d MMM') }}<br>
+                            {{ post.createdAt|date('Y') }}
+                        </div> #}
+
+                        <div class="flex-1">
+                            {# <a href="{{ path('posts_by_category', {slug: post.category.slug}) }}" 
+                               class="text-indigo-600 text-sm font-semibold hover:underline">
+                                {{ post.category.name }}
+                            </a> #}
+
+                            <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-3 hover:text-indigo-600 transition">
+                                <a href="{{ path('app_post', {slug: post.slug}) }}">
+                                    {{ post.title }}
+                                </a>
+                            </h2>
+
+                            <p class="text-gray-600 mb-4">
+                                {{ post.content|striptags|slice(0, 180) }}...
+                            </p>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">Por {{ post.user.name }}</span>
+                                <a href="{{ path('app_post', {slug: post.slug}) }}" 
+                                   class="text-indigo-600 hover:text-indigo-700 font-medium text-sm flex items-center gap-1">
+                                    Leer más
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            {% else %}
+                <p class="text-center text-gray-500 py-16 text-lg">No hay publicaciones.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

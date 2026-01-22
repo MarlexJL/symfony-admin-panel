@@ -1,34 +1,98 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        <p class="text-center mt-4">
-            <a href="{{ path('app_home') }}">Home</a> | 
-            {% if app.user %}
-                Iniciaste sesión como <strong>{{ app.user.name }}</strong> | 
-                <a href="{{ path('app_logout') }}">Cerrar sesión</a>
-            {% else %}
-                <a href="{{ path('app_login') }}">Iniciar sesión</a>
-                <a href="{{ path('app_register') }}">Registrarse</a>
-            {% endif %}
-        </p>
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="bg-white shadow-lg">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div
+					class="flex justify-between h-16">
+					{# Logo/Brand #}
+					<div class="flex items-center">
+						<a href="{{ path('app_home') }}" class="flex items-center space-x-2">
+							<span class="text-2xl font-bold text-indigo-600">Mi Blog Personal</span>
+						</a>
+					</div>
 
-        <div class="my-4">
-            <div class="row p-4 rounded border shadow-lg">
-                <div class="grid cols-md-9">
-                    {% block body %}{% endblock %}
-                </div>
-            </div>
-        </div>        
-    </body>
+					{# Desktop Menu #}
+					<div class="hidden md:flex items-center space-x-8">
+						<a href="{{ path('app_home') }}" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">
+							Inicio
+						</a>
+
+						{% if app.user %}
+							<div class="flex items-center space-x-4">
+								<span class="text-sm text-gray-600">
+									Hola,
+									<strong class="text-gray-900">{{ app.user.name }}</strong>
+								</span>
+								<a href="{{ path('app_logout') }}" class="bg-red-50 text-red-600 hover:bg-red-100 px-4 py-2 rounded-lg text-sm font-medium transition duration-150">
+									Cerrar sesión
+								</a>
+							</div>
+						{% else %}
+							<a href="{{ path('app_login') }}" class="text-gray-700 hover:text-indigo-600 px-4 py-2 rounded-lg text-sm font-medium transition duration-150">
+								Iniciar sesión
+							</a>
+							<a href="{{ path('app_register') }}" class="bg-indigo-600 text-white hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm font-medium transition duration-150">
+								Registrarse
+							</a>
+						{% endif %}
+					</div>
+
+					{# Mobile menu button #}
+					<div class="md:hidden flex items-center">
+						<button type="button" class="text-gray-700 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+							<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			{# Mobile menu #}
+			<div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+				<div class="px-2 pt-2 pb-3 space-y-1">
+					<a href="{{ path('app_home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">
+						Inicio
+					</a>
+
+					{% if app.user %}
+						<div class="px-3 py-2 text-sm text-gray-600">
+							Hola,
+							<strong class="text-gray-900">{{ app.user.name }}</strong>
+						</div>
+						<a href="{{ path('app_logout') }}" class="block px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50">
+							Cerrar sesión
+						</a>
+					{% else %}
+						<a href="{{ path('app_login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">
+							Iniciar sesión
+						</a>
+						<a href="{{ path('app_register') }}" class="block px-3 py-2 rounded-md text-base font-medium bg-indigo-600 text-white hover:bg-indigo-700">
+							Registrarse
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</nav>
+
+		<div class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {% block body %}{% endblock %}</div>
+		</div>
+	</body>
 </html>

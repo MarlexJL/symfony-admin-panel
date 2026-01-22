@@ -17,13 +17,13 @@ class CommentType extends AbstractType
             ->add('content', TextareaType::class, [
                 'label' => 'Comentario',
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'w-full p-2 border border-gray-300 rounded mb-4',
                     'rows' => 5,
                     'placeholder' => 'Tu comentario aquí...',
                 ],
             ])
             ->add('Enviar', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-dark mt-3'],
+                'attr' => ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mb-4'],
             ])
         ;
     }

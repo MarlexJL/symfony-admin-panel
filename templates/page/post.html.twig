@@ -5,22 +5,85 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{ post.title }}</h1>
+	{# <h1 class="text-2xl font-bold text-blue-700">{{ post.title }}</h1>
+		
+			<div class="mt-4 text-gray-700">
+				{{ post.content }}	
+			</div>
+			<div>
+				Publicado por <strong>{{ post.user.name }}</strong>
+			</div> #}
+	<article class="min-h-screen bg-white">
+		<div
+			class="max-w-3xl mx-auto px-4 py-16">
+			{# Header #}
+			<header class="mb-12 text-center">
+				<h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+					{{ post.title }}
+				</h1>
 
-	{{ post.content }}
+				<div class="flex items-center justify-center gap-6 text-gray-600">
+					<span class="flex items-center gap-2">
+						<div class="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+							{{ post.user.name|slice(0, 1)|upper }}
+						</div>
+						{{ post.user.name }}
+					</span>
+					<span>•</span>
+					{# <span>{{ post.createdAt|date('d M Y') }}</span> #}
+					<span>
+						01/enero/2026
+					</span>
+				</div>
+			</header>
 
-	{% include "page/_info.html.twig" %}
+			{# Contenido #}
+			<div class="prose prose-xl max-w-none mb-12">
+				{{ post.content|raw }}
+			</div>
 
-	<div>
-		{% include 'page/_comment-form.html.twig' %}
-		<hr>
+			{% include "page/_info.html.twig" %}
 
-		{% for comment in post.comments %}
-			<p>
-				<strong>{{ comment.user.name }}</strong>
-				{{ comment.content }}
-			</p>
-			<hr>
-		{% endfor %}
-	</div>
-{% endblock %}
+			{# Comentarios #}
+			<div class="bg-white rounded-xl shadow-lg p-8 mt-8">
+				<h3 class="text-2xl font-bold text-gray-900 mb-2">Comentarios</h3>
+				<p class="text-gray-500 mb-6">{{ post.comments|length }}
+					respuestas en esta discusión</p>
+
+				{# {% for comment in post.comments %}
+					<p>
+						<strong>{{ comment.user.name }}</strong>
+						{{ comment.content }}
+					</p>
+					<hr>
+				{% endfor %} #}
+				 {# Thread de comentarios #}
+    <div class="mt-8">
+        {% for comment in post.comments %}
+            <div class="flex gap-3 {% if not loop.last %}border-l-2 border-gray-200 pb-6 mb-6 ml-6{% endif %}">
+                {# Avatar #}
+                <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 -ml-6 relative bg-white">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
+                        {{ comment.user.name|slice(0, 1)|upper }}
+                    </div>
+                </div>
+                
+                {# Contenido #}
+                <div class="flex-1 bg-gray-50 rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-gray-900">{{ comment.user.name }}</span>
+                            {# <span class="text-xs text-gray-500">{{ comment.createdAt|date('d M Y, H:i') }}</span> #}
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">{{ comment.content }}</p>
+                </div>
+            </div>
+        {% else %}
+            <div class="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg">
+                <p class="text-gray-500">No hay comentarios todavía</p>
+            </div>
+        {% endfor %}
+			</div>
+		</article>
+	{% endblock %}
