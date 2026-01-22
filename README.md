@@ -111,7 +111,7 @@ Crear un formulario
 
 Instalación de framework de CSS
 
-- Bootsrap
+- Bootstrap
 
 - Tailwind
 ```
