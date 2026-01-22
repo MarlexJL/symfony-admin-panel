@@ -8,13 +8,14 @@
         {% endblock %}
 
         {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
         <p class="text-center mt-4">
             <a href="{{ path('app_home') }}">Home</a> | 
             {% if app.user %}
-                <strong>{{ app.user.name }}</strong> | 
+                Iniciaste sesión como <strong>{{ app.user.name }}</strong> | 
                 <a href="{{ path('app_logout') }}">Cerrar sesión</a>
             {% else %}
                 <a href="{{ path('app_login') }}">Iniciar sesión</a>

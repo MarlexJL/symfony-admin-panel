@@ -107,3 +107,16 @@ Crear un formulario
 ```
     php bin/console make:form
 ```
+
+
+Instalación de framework de CSS
+
+- Bootsrap
+
+- Tailwind
+```
+    composer require symfonycasts/tailwind-bundle
+    php bin/console tailwind:init //Configurar la hoja de estilos
+    php bin/console tailwind:build
+    php bin/console tailwind:build --watch
+```
