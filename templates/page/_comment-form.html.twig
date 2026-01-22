@@ -1,0 +1,8 @@
+{% if app.user %}
+    <p>
+        Comentar como <strong> {{ app.user.name }}</strong>
+    </p>
+    {{ form(form, {'action': path('app_comment_new', {'slug': post.slug})}) }}
+{% else %}
+    <p>Por favor <a href="{{ path('app_login') }}">inicia sesión</a> para añadir un comentario.</p>
+{% endif %}

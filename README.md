@@ -103,3 +103,7 @@ Eliminar la base de datos
     php bin/console doctrine:migrations:migrate
 ```
 
+Crear un formulario
+```
+    php bin/console make:form
+```

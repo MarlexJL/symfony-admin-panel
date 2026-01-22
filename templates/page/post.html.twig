@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PageController!
+{% block title %}
+	Publicaciones
 {% endblock %}
 
 {% block body %}
 	<h1>{{ post.title }}</h1>
 
-    {{ post.content }}
+	{{ post.content }}
 
 	<p>
 		<strong>{{ post.category.name }}</strong>
@@ -15,10 +16,12 @@
 		comentarios
 	</p>
 
-    <div>
-        {% for comment in post.comments %}
-            <p>{{ comment.content }}</p>
-            <hr>
-        {% endfor %}
-    </div>
+	{% include 'page/_comment-form.html.twig' %}
+
+	<div>
+		{% for comment in post.comments %}
+			<p>{{ comment.content }}</p>
+			<hr>
+		{% endfor %}
+	</div>
 {% endblock %}
