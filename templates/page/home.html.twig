@@ -8,16 +8,11 @@
 	<h1>Ultimas publicaciones</h1>
 	{% for post in posts %}
 		<h2>
-			<a href="{{ path('app_post', {'slug': post.slug}) }}">
+			<a href="{{ path('app_post', {slug: post.slug}) }}" class="text-black text-decoration-none">
 				{{ post.title }}
 			</a>
 		</h2>
-		<p>
-			<strong>{{ post.category.name }}</strong>
-			-
-			{{ post.comments|length }}
-			comentarios
-		</p>
+		{% include "page/_info.html.twig" %}
 	{% else %}
 		<p>No hay publicaciones.</p>
 	{% endfor %}

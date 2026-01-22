@@ -11,6 +11,23 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <p class="text-center mt-4">
+            <a href="{{ path('app_home') }}">Home</a> | 
+            {% if app.user %}
+                <strong>{{ app.user.name }}</strong> | 
+                <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Iniciar sesión</a>
+                <a href="{{ path('app_register') }}">Registrarse</a>
+            {% endif %}
+        </p>
+
+        <div class="my-4">
+            <div class="row p-4 rounded border shadow-lg">
+                <div class="grid cols-md-9">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>        
     </body>
 </html>
